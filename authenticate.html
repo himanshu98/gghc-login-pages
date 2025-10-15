@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GGHC Authentication</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e8e8e8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 60px 80px;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 50px;
+            gap: 15px;
+        }
+
+        .logo-box {
+            background-color: #9d9283;
+            color: white;
+            padding: 20px 25px;
+            font-weight: bold;
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+
+        .company-name {
+            color: #9d9283;
+            font-size: 18px;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .instruction-text {
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 35px;
+        }
+
+        .instruction-text p {
+            margin-bottom: 5px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            max-width: 240px;
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            text-align: center;
+            letter-spacing: 3px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #9d9283;
+        }
+
+        .submit-btn {
+            padding: 12px 50px;
+            background-color: #9d9283;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background-color: #8a8074;
+        }
+
+        .warning-text {
+            text-align: center;
+            font-size: 13px;
+            color: #888;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .info-text {
+            text-align: center;
+            font-size: 13px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 30px;
+            }
+
+            .logo-section {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .company-name {
+                font-size: 14px;
+            }
+
+            input[type="text"] {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-section">
+            <div class="logo-box">GGHC</div>
+            <div class="company-name">GILDER GAGNON HOWE & CO.</div>
+        </div>
+
+        <h1 class="title">AUTHENTICATE WITH CODE</h1>
+
+        <div class="instruction-text">
+            <p>We have sent you a security code to the following number</p>
+            <p>Enter the Code from SMS / Email</p>
+        </div>
+
+        <form id="authForm">
+            <div class="form-group">
+                <input 
+                    type="text" 
+                    id="code" 
+                    name="code" 
+                    placeholder="XXXXXX" 
+                    maxlength="6"
+                    required
+                >
+                <button type="submit" class="submit-btn">Submit</button>
+            </div>
+        </form>
+
+        <p class="warning-text">System will only allow 3 attempts.</p>
+
+        <p class="info-text">
+            If you are not able to receive texts at this number, or your number has changed, please contact your client service representative.
+        </p>
+    </div>
+
+    <script>
+        const codeInput = document.getElementById('code');
+        let attempts = 0;
+        const maxAttempts = 3;
+
+        // Auto-uppercase and filter non-alphanumeric characters
+        codeInput.addEventListener('input', function(e) {
+            this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+        });
+
+        document.getElementById('authForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            attempts++;
+            
+            const code = codeInput.value;
+            
+            if (code.length === 6) {
+                if (attempts >= maxAttempts) {
+                    alert('Maximum attempts reached. Please contact your client service representative.');
+                    codeInput.disabled = true;
+                    document.querySelector('.submit-btn').disabled = true;
+                } else {
+                    alert(`Code submitted: ${code}\nAttempts remaining: ${maxAttempts - attempts}\n(This is a demo)`);
+                }
+            } else {
+                alert('Please enter a 6-character code');
+                attempts--; // Don't count invalid format as an attempt
+            }
+        });
+    </script>
+</body>
+</html>
