@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GGHC Login Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e8e8e8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 60px 80px;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 50px;
+            gap: 15px;
+        }
+
+        .logo-box {
+            background-color: #9d9283;
+            color: white;
+            padding: 20px 25px;
+            font-weight: bold;
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+
+        .company-name {
+            color: #9d9283;
+            font-size: 18px;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 15px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #9d9283;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: #9d9283;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background-color: #8a8074;
+        }
+
+        .info-text {
+            text-align: center;
+            font-size: 13px;
+            color: #666;
+            line-height: 1.6;
+            margin-top: 30px;
+        }
+
+        .info-text p {
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 30px;
+            }
+
+            .logo-section {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .company-name {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-section">
+            <div class="logo-box">GGHC</div>
+            <div class="company-name">GILDER GAGNON HOWE & CO.</div>
+        </div>
+
+        <h1 class="title">GGHC LOGIN PAGE</h1>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Johnny Depps" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone" placeholder="XXX-XXX-2124" required>
+            </div>
+
+            <button type="submit" class="submit-btn">Click Here to Receive a Code</button>
+        </form>
+
+        <div class="info-text">
+            <p>To authenticate your identity a text will be sent to your mobile number on file, which should end with the last 4 digits shown above.</p>
+            <p>If this does not appear to be an accurate number, you are not able to receive texts at this number, or your number has changed, please contact your client service representative.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Code request submitted! (This is a demo)');
+        });
+    </script>
+</body>
+</html>
